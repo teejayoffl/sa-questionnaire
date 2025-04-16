@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import OnboardingLayout from './pages/OnboardingLayout';
+import CompletionPage from './pages/CompletionPage';
+import TestRoutes from './pages/TestRoutes';
+import WelcomePage from './pages/WelcomePage';
+import { FormProvider } from './context/FormContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <FormProvider>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/onboarding" element={<OnboardingLayout />} />
+          <Route path="/completion" element={<CompletionPage />} />
+          <Route path="/test" element={<TestRoutes />} />
+        </Routes>
+      </FormProvider>
+    </BrowserRouter>
   );
 }
 

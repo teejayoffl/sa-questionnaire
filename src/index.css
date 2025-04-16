@@ -1,13 +1,441 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-gray-50 font-inter;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter;
+  }
+  button, input, select, textarea {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /*
+   * Custom scrollbar styles
+   * These provide a thin, subtle scrollbar for better UX
+   * with scrollable containers throughout the application
+   */
+  
+  /* Webkit browsers (Chrome, Safari, Edge) scrollbar styles */
+  .scrollbar::-webkit-scrollbar {
+    width: 0;  /* Hide scrollbar width completely */
+    height: 0; /* Hide scrollbar height completely */
+    display: none; /* Additional hiding for some browsers */
+  }
+  
+  /* Scrollbar track (the area behind the scrollbar) */
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent; /* Makes the track invisible */
+  }
+  
+  /* Scrollbar thumb (the draggable part) */
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(203 213 225); /* Light blue-gray color */
+    border-radius: 10px;          /* Rounded corners on scrollbar */
+  }
+  
+  /* Scrollbar thumb hover state */
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(148 163 184); /* Darker shade when hovering */
+  }
+  
+  /* Firefox scrollbar styles */
+  .scrollbar {
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none;     /* Hide scrollbar in Firefox */
+  }
+  
+  /* 
+   * Global scrollbar styles - applied to all elements
+   * Ensures consistent scrollbar appearance across the application
+   */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(203 213 225) transparent;
+  }
+  
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background: rgb(203 213 225);
+    border-radius: 10px;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgb(148 163 184);
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer utilities {
+  /* 
+   * Sticky bottom utilities
+   * Used for keeping action buttons visible at the bottom of scrollable containers
+   */
+  .sticky-bottom {
+    position: relative !important;
+    bottom: auto !important;
+  }
+  
+  /* Scroll indicator animation for better UX */
+  .scroll-indicator {
+    display: none !important;
+  }
+}
+
+@layer components {
+  .gradient-blue {
+    @apply bg-gradient-to-r from-wis-blue-400 to-wis-blue-600;
+  }
+  
+  .gradient-gold {
+    @apply bg-gradient-to-r from-wis-gold-400 to-wis-gold-600;
+  }
+  
+  .gradient-silver {
+    @apply bg-gradient-to-r from-wis-silver-300 to-wis-silver-500;
+  }
+  
+  .gradient-bronze {
+    @apply bg-gradient-to-r from-wis-bronze-400 to-wis-bronze-600;
+  }
+  
+  /* New metallic gradients */
+  .metallic-blue {
+    background: linear-gradient(145deg, #4097FD, #005CCB, #4097FD);
+    background-size: 200% 200%;
+    animation: shimmer 2.5s ease infinite;
+    box-shadow: 0 5px 15px rgba(0, 114, 243, 0.2), inset 0 -3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .metallic-gold {
+    background: linear-gradient(145deg, #FFCB4D, #E6A800, #FFCB4D);
+    background-size: 200% 200%;
+    animation: shimmer 2.5s ease infinite;
+    box-shadow: 0 5px 15px rgba(230, 168, 0, 0.2), inset 0 -3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .metallic-silver {
+    background: linear-gradient(145deg, #DEE2E6, #6C757D, #DEE2E6);
+    background-size: 200% 200%;
+    animation: shimmer 2.5s ease infinite;
+    box-shadow: 0 5px 15px rgba(173, 181, 189, 0.2), inset 0 -3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .btn-metallic {
+    @apply py-3 px-6 text-white font-semibold rounded-xl transition-all duration-200 transform hover:-translate-y-1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary {
+    @apply btn-metallic metallic-blue;
+  }
+  
+  .btn-secondary {
+    @apply py-3 px-6 bg-white border border-wis-silver-300 text-wis-silver-800 font-semibold rounded-xl shadow-soft hover:shadow-medium transition-all duration-200 transform hover:-translate-y-1;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-soft border border-wis-silver-200 p-6;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg border border-wis-silver-300 focus:ring-2 focus:ring-wis-blue-400 focus:border-transparent;
+  }
+  
+  .form-select {
+    @apply w-full px-4 py-3 rounded-lg border border-wis-silver-300 focus:ring-2 focus:ring-wis-blue-400 focus:border-transparent;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-wis-silver-800 mb-1;
+  }
+  
+  .tooltip {
+    @apply relative cursor-pointer;
+  }
+  
+  .tooltip-text {
+    @apply absolute hidden group-hover:block bg-wis-silver-800 text-white text-xs rounded-lg py-2 px-3 w-48 bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10 before:content-[''] before:absolute before:top-full before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-wis-silver-800;
+  }
+
+  /* Card styles for the conversation UI */
+  .chat-container {
+    @apply flex flex-col gap-4;
+  }
+
+  .chat-card {
+    @apply w-full rounded-xl shadow-soft border border-wis-silver-200 overflow-hidden;
+    transition: all 0.3s ease;
+  }
+
+  .chat-question {
+    @apply p-4 bg-white flex items-start gap-3 justify-end;
+  }
+
+  .chat-answer {
+    @apply p-4 bg-blue-50 flex items-start gap-3;
+  }
+
+  .avatar {
+    @apply w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0;
+  }
+
+  .avatar-user {
+    @apply bg-blue-600 text-white text-xs font-medium;
+  }
+
+  .avatar-assistant {
+    @apply bg-white text-blue-600 border border-blue-200;
+  }
+
+  .chat-bubble {
+    @apply max-w-[90%] p-4 rounded-2xl;
+  }
+
+  .chat-answer .chat-bubble {
+    @apply bg-white rounded-tl-sm;
+  }
+
+  .chat-question .chat-bubble {
+    @apply bg-blue-600 text-white rounded-tr-sm;
+  }
+
+  .chat-actions {
+    @apply mt-4 flex flex-wrap gap-2;
+  }
+
+  .chat-btn {
+    @apply py-2 px-4 rounded-full text-sm font-medium transition-all duration-200;
+  }
+
+  .chat-btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600;
+  }
+
+  .chat-btn-secondary {
+    @apply bg-gray-100 text-gray-800 hover:bg-gray-200;
+  }
+
+  /* Typing indicator animation */
+  .typing-indicator {
+    @apply flex space-x-2;
+  }
+  
+  .typing-circle {
+    @apply w-2 h-2 bg-gray-300 rounded-full;
+  }
+  
+  .bounce-delay-1 {
+    animation: bounce 1s infinite ease-in-out;
+  }
+  
+  .bounce-delay-2 {
+    animation: bounce 1s infinite ease-in-out 0.2s;
+  }
+  
+  .bounce-delay-3 {
+    animation: bounce 1s infinite ease-in-out 0.4s;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  /* Progress indicator */
+  .progress-indicator {
+    @apply h-2 bg-gray-200 rounded-full overflow-hidden;
+  }
+  
+  .progress-bar {
+    @apply h-full bg-blue-500 transition-all duration-500 ease-in-out;
+  }
+
+  /* Selection Styles */
+  .selection-card {
+    @apply border rounded-lg p-4 cursor-pointer transition-all duration-150;
+  }
+  
+  .selection-card-selected {
+    @apply border-blue-500 bg-blue-50;
+  }
+  
+  .selection-card-unselected {
+    @apply border-gray-200 hover:border-blue-300;
+  }
+  
+  .selection-checkbox {
+    @apply h-5 w-5 rounded-sm border border-gray-300 flex items-center justify-center;
+  }
+  
+  .selection-checkbox-selected {
+    @apply bg-blue-500 border-blue-500;
+  }
+  
+  /* Section cards */
+  .section-card {
+    @apply bg-white rounded-lg p-5 border border-gray-200 shadow-sm mb-4 transition-all duration-200;
+  }
+  
+  .section-card:hover {
+    @apply shadow-md border-blue-200;
+  }
+  
+  .section-card-header {
+    @apply flex justify-between items-center mb-3;
+  }
+  
+  .section-card-title {
+    @apply text-lg font-medium text-gray-800;
+  }
+  
+  .section-card-description {
+    @apply text-sm text-gray-600;
+  }
+}
+
+/* Chat Flow Improvements */
+.form-container {
+  transition: all 0.3s ease;
+  animation: form-appear 0.5s ease forwards;
+  overflow: visible !important;
+  position: relative;
+  max-height: none !important;
+}
+
+@keyframes form-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chat message highlight animation */
+.chat-message-highlight {
+  animation: highlight-pulse 2s ease-in-out;
+}
+
+@keyframes highlight-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* Automatic scrolling indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.scroll-indicator.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-indicator-icon {
+  animation: bounce-down 1.5s infinite;
+}
+
+@keyframes bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Improved form styles for better visibility */
+.form-field {
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-field:focus-within {
+  transform: scale(1.02);
+}
+
+/* Button enhancements for better UX */
+.action-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.action-button:hover::after {
+  transform: translateX(100%);
+}
+
+/* Adaptive content sizing for forms */
+@media (max-width: 640px) {
+  .form-container {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .form-container {
+    max-height: none;
+  }
+}
+
+/* Remove form scroll containers */
+#form-scroll-container {
+  max-height: none !important;
+  overflow: visible !important;
 }

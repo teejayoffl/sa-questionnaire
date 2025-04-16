@@ -1,46 +1,86 @@
-# Getting Started with Create React App
+# WIS Accountancy Self-Assessment Onboarding Journey
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, frictionless, conversion-focused self-assessment onboarding web journey for WIS Accountancy's Self-Assessment Tax Return Service.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Seamless, anxiety-free user journey with progressive disclosure
+- Mobile-responsive design
+- WIS Accountancy brand styling with metallic gradients and clean UI
+- Smart form sections that dynamically appear based on user responses
+- File upload capability for P60/P45 and other documents
+- Animated UI elements for a premium feel
+- Personalized progress messaging
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React with TypeScript
+- React Router for navigation
+- React Hook Form for form validation and management
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Heroicons for icons
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Project Structure
 
-### `npm test`
+- `/src/components/common` - Reusable UI components
+- `/src/components/sections` - Form sections for each part of the tax return
+- `/src/context` - React context for state management
+- `/src/pages` - Main page components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js (v14+ recommended)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd wis-onboarding
+   ```
 
-### `npm run eject`
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Start the development server:
+   ```
+   npm start
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Deployment
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To create a production build:
 
-## Learn More
+```
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Implementation Notes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- The journey is designed with progressive disclosure to simplify complex tax forms
+- Each section is collapsible and expands only when needed
+- Form state is maintained in a global context for persistence
+- Validation happens in real-time with friendly error messages
+- "Save & Continue Later" functionality is included for long forms
+- Submission triggers an approval flow to WIS Accountancy's team
+
+## Future Enhancements
+
+- Integration with OCR for automatic document data extraction
+- API integration with HMRC systems
+- Additional form sections for specialized tax situations
+- Multi-language support
+- Dark mode theme
+- Accessibility improvements
+
+## License
+
+This project is private and proprietary to WIS Accountancy.
